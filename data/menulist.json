@@ -1,0 +1,13 @@
+[
+  { "title": "上課時程表",           "desc": "查看課程時間與地點",       "link": "schedule.html",               "newWindow": false },
+  { "title": "班級資料維護",         "desc": "管理班級成員與資訊",       "link": "class-data.html",             "newWindow": false },
+  { "title": "便當訂購",             "desc": "快速線上訂午餐",           "link": "https://docs.google.com/…",   "newWindow": true  },
+  { "title": "活動報名與管理",       "desc": "報名班級活動並查看狀態",   "link": "events.html",                 "newWindow": false },
+  { "title": "班費收支一覽",         "desc": "查看班費收支記錄",         "link": "finance.html",                "newWindow": false },
+  { "title": "校內講座",             "desc": "瀏覽校內講座資訊",         "link": "",                           "newWindow": false },
+  { "title": "公告與通知",           "desc": "最新公告與通知",           "link": "",                           "newWindow": false },
+  { "title": "班級事項宣導",         "desc": "重要宣導事項",             "link": "announcements.html",          "newWindow": false },
+  { "title": "課程講義/簡報教材上傳／下載", "desc": "上傳或下載教學文件",    "link": "materials.html",              "newWindow": false },
+  { "title": "幹部待辦事項",         "desc": "查看幹部專屬待辦事項",     "link": "tasks.html",                  "newWindow": false },
+  { "title": "幹部會議記錄",         "desc": "歷次幹部會議記錄",         "link": "",                           "newWindow": false }
+]

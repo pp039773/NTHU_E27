@@ -1,0 +1,20 @@
+[
+  {
+    "title": "AI 在未來教育的應用",
+    "speaker": "張教授",
+    "date": "2025-03-10",
+    "link": "lecture1.html"
+  },
+  {
+    "title": "量子運算入門",
+    "speaker": "李博士",
+    "date": "2025-04-05",
+    "link": "lecture2.html"
+  },
+  {
+    "title": "區塊鏈技術與未來商業模式",
+    "speaker": "陳工程師",
+    "date": "2025-05-01",
+    "link": "lecture3.html"
+  }
+]
