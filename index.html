@@ -13,32 +13,20 @@
 
   <!-- 主視覺色彩與自訂樣式 -->
   <style>
-    :root {
-      --bs-primary: #6D297C;
-    }
+    :root { --bs-primary: #6D297C; }
     body { background-color: #f8f9fa; }
-    .feature-card:hover {
-      transform: translateY(-4px);
-      transition: 0.2s;
-    }
+    .feature-card:hover { transform: translateY(-4px); transition: 0.2s; }
     .card-body { cursor: pointer; }
+    /* 卡片標題字重加粗 */
+    .card-title { font-weight: 700; }
   </style>
 </head>
-
 <body>
   <!-- 導覽列 -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">NTHU E27班務系統</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="切換導覽"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="#navbarNav" aria-expanded="false" aria-label="切換導覽">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav"></div>
@@ -57,94 +45,75 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const container = document.getElementById('feature-list');
-
-      // 通用建立卡片函式
       function createCard({ title, desc, link, newWindow, onLoad }) {
-        const col = document.createElement('div');
-        col.className = 'col-12 col-md-6';
+        const col = document.createElement('div'); col.className = 'col-12 col-md-6';
         if (onLoad) {
-          const card = document.createElement('div');
-          card.className = 'card feature-card h-100 shadow-sm';
-          const body = document.createElement('div');
-          body.className = 'card-body';
+          const card = document.createElement('div'); card.className = 'card feature-card h-100 shadow-sm';
+          const body = document.createElement('div'); body.className = 'card-body';
           const h5 = document.createElement('h5'); h5.className = 'card-title'; h5.textContent = title;
           const p = document.createElement('p'); p.className = 'card-text text-muted'; if(desc) p.textContent = desc;
-          const contentDiv = document.createElement('div');
-          contentDiv.className = 'mt-3'; contentDiv.style.display = 'none';
-          body.append(h5, p, contentDiv);
-          card.appendChild(body);
+          const contentDiv = document.createElement('div'); contentDiv.className = 'mt-3'; contentDiv.style.display = 'none';
+          body.append(h5, p, contentDiv); card.appendChild(body);
+          // 卡片點擊事件只在此處觸發展開/收合
           card.addEventListener('click', () => {
-            if (!contentDiv.dataset.loaded) {
-              onLoad(contentDiv);
-              contentDiv.dataset.loaded = 'true';
-            }
+            if (!contentDiv.dataset.loaded) { onLoad(contentDiv); contentDiv.dataset.loaded = 'true'; }
             contentDiv.style.display = contentDiv.style.display === 'none' ? 'block' : 'none';
           });
           col.appendChild(card);
         } else {
           const a = document.createElement('a');
-          a.href = link; a.className = 'text-decoration-none';
-          if (newWindow) a.target = '_blank';
-          const card = document.createElement('div');
-          card.className = 'card feature-card h-100 shadow-sm';
-          const body = document.createElement('div');
-          body.className = 'card-body';
+          a.href = link; a.className = 'text-decoration-none'; if (newWindow) a.target = '_blank';
+          const card = document.createElement('div'); card.className = 'card feature-card h-100 shadow-sm';
+          const body = document.createElement('div'); body.className = 'card-body';
           const h5 = document.createElement('h5'); h5.className = 'card-title'; h5.textContent = title;
           const p = document.createElement('p'); p.className = 'card-text text-muted'; p.textContent = desc;
-          body.append(h5, p);
-          card.appendChild(body);
-          a.appendChild(card);
-          col.appendChild(a);
+          body.append(h5, p); card.appendChild(body); a.appendChild(card); col.appendChild(a);
         }
         container.appendChild(col);
       }
-
-      // 載入選單 JSON
-      fetch('data/menulist.json')
-        .then(r => r.json())
-        .then(menus => {
-          // 最新公告
-          createCard({
-            title: '最新公告', onLoad: el => {
+      // 載入選單
+      fetch('data/menulist.json').then(r => r.json()).then(menus => {
+        // 最新公告
+        createCard({ title: '最新公告', onLoad: el => {
+          el.textContent = '載入中…';
+          fetch('data/announcements.json').then(r=>r.json()).then(data=>{
+            el.innerHTML = data.map(i=>
+              `<div class="mb-3"><h6>${i.title}</h6><small class="text-secondary">📅 ${i.date}</small><p>${i.content}</p></div>`
+            ).join('');
+          });
+        }});
+        menus.forEach(item => {
+          if (item.title === '上課時程表') {
+            createCard({ title: item.title, onLoad: el => {
+              el.innerHTML = `
+                <div class="mb-2"><a href="https://calendar.google.com/calendar/u/0?cid=M2ExZTcxZGE4Mjc1ZDM3YzcxODJiMWZhOGRmOGVmZDc5ZjM5OTJiYjliNDZhYzEyODIxNDU1ZTI1ZjAwYWJhYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" onclick="event.stopPropagation()">E27專用Google Calendar</a></div>
+                <div class="mb-2"><a href="#" onclick="event.stopPropagation(); alert('教材準備中，請稍後...')">如何匯入我的Google Calendar</a></div>
+                <div class="mb-2"><a href="#" onclick="event.stopPropagation(); alert('教材準備中，請稍後...')">如何匯入我的Outlook</a></div>
+              `;
+            }});
+          } else if (item.title === '校內講座') {
+            createCard({ title: item.title, desc: item.desc, onLoad: el => {
               el.textContent = '載入中…';
-              fetch('data/announcements.json').then(r => r.json()).then(data => {
-                el.innerHTML = data.map(i =>
-                  `<div class="mb-3"><h6>${i.title}</h6><small class="text-secondary">📅 ${i.date}</small><p>${i.content}</p></div>`
+              fetch('data/campuslecture.json').then(r=>r.json()).then(list=>{
+                el.innerHTML = list.map(l=>
+                  `<div class="mb-2"><a href="${l.link}" target="_blank" onclick="event.stopPropagation()">${l.title}</a><br>主講人: ${l.speaker}<br>日期: ${l.date}</div>`
                 ).join('');
               });
-            }
-          });
-
-          menus.forEach(item => {
-            if (item.title === '校內講座') {
-              createCard({
-                title: item.title, desc: item.desc, onLoad: el => {
-                  el.textContent = '載入中…';
-                  fetch('data/campuslecture.json').then(r => r.json()).then(list => {
-                    el.innerHTML = list.map(l =>
-                      `<div class="mb-2"><a href="${l.link}" target="_blank">${l.title}</a><br>主講人: ${l.speaker}<br>日期: ${l.date}</div>`
-                    ).join('');
-                  });
-                }
+            }});
+          } else if (item.title === '幹部會議記錄') {
+            createCard({ title: item.title, desc: item.desc, onLoad: el => {
+              el.textContent = '載入中…';
+              fetch('data/meetingminutes.json').then(r=>r.json()).then(list=>{
+                el.innerHTML = list.map(m=>
+                  `<div class="mb-2"><a href="${m.link}" target="_blank" onclick="event.stopPropagation()">● ${m.date}</a></div>`
+                ).join('');
               });
-            } else if (item.title === '幹部會議記錄') {
-              createCard({
-                title: item.title, desc: item.desc, onLoad: el => {
-                  el.textContent = '載入中…';
-                  fetch('data/meetingminutes.json').then(r => r.json()).then(list => {
-                    el.innerHTML = list.map(m =>
-                      `<div class="mb-2"><a href="${m.link}" target="_blank">● ${m.date}</a></div>`
-                    ).join('');
-                  });
-                }
-              });
-            } else {
-              createCard({
-                title: item.title, desc: item.desc, link: item.link, newWindow: item.newWindow
-              });
-            }
-          });
+            }});
+          } else {
+            createCard({ title: item.title, desc: item.desc, link: item.link, newWindow: item.newWindow });
+          }
         });
+      });
     });
   </script>
 </body>
