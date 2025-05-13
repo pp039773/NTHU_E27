@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>公告欄</title>
+  <!-- 引入 jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📢 最新公告</h1>
+    <!-- 公告列表容器 -->
+    <ul id="announcement-list"></ul>
+  </div>
+
+  <script>
+  $(document).ready(function() {
+    // 1. 讀入 JSON
+    $.getJSON('data/announcements.json')
+      .done(function(data) {
+        // 2. 迭代每一筆公告
+        data.forEach(function(item) {
+          const html = `
+            <li class="announcement-item">
+              <h2 class="title">${item.title}</h2>
+              <div class="meta">📅 ${item.date}</div>
+              <p class="content">${item.content}</p>
+            </li>`;
+          $('#announcement-list').append(html);
+        });
+      })
+      .fail(function(jqxhr, textStatus, error) {
+        $('#announcement-list').append(
+          '<li class="error">載入公告失敗：${textStatus}</li>');
+      });
+  });
+  </script>
+</body>
+</html>
