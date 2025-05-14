@@ -124,7 +124,19 @@
                 el.innerHTML = `<p class="text-center text-muted">規畫中，請稍後...</p>`;
 
               }});
-            }  else if (item.title === '🍽️ 午餐/下午茶') {
+            }  else if (item.title === '🗣️ 班級事項宣導') {
+              createCard({ title: item.title, desc: item.desc, onLoad: el => {
+                // 改為 alert 規畫中
+                el.innerHTML = `<p class="text-center text-muted">規畫中，請稍後...</p>`;
+
+              }});
+            } else if (item.title === '📝 活動報名與管理') {
+              createCard({ title: item.title, desc: item.desc, onLoad: el => {
+                // 改為 alert 規畫中
+                el.innerHTML = `<p class="text-center text-muted">規畫中，請稍後...</p>`;
+
+              }});
+            } else if (item.title === '🍽️ 午餐/下午茶') {
               createCard({ title: item.title, desc: item.desc, onLoad: el => {
                 // 改為 alert 規畫中
                 el.innerHTML = `<p class="text-center text-muted">規畫中，請稍後...</p>`;
