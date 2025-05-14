@@ -1,12 +1,12 @@
 [
-  { "title": "📅上課日程表",           "desc": "查看課程時間與地點",       "link": "https://calendar.google.com/calendar/embed?src=3a1e71da8275d37c7182b1fa8df8efd79f3992bb9b46ac12821455e25f00abaa%40group.calendar.google.com&ctz=Asia%2FTaipei",               "newWindow": false },
-  { "title": "🧾班級資料維護",         "desc": "管理班級成員與資訊",       "link": "class-data.html",             "newWindow": false },
-  { "title": "🍽️午餐/下午茶",             "desc": "快速線上訂餐",           "link": "https://docs.google.com/…",   "newWindow": true  },
-  { "title": "📝活動報名與管理",       "desc": "報名班級活動並查看狀態",   "link": "events.html",                 "newWindow": false },
-  { "title": "💰班費收支一覽",         "desc": "查看班費收支記錄",         "link": "finance.html",                "newWindow": false },
-  { "title": "🧑‍🏫校內講座",             "desc": "瀏覽校內講座資訊",         "link": "#",                           "newWindow": false },
-  { "title": "🗣️班級事項宣導",         "desc": "重要宣導事項",             "link": "announcements.html",          "newWindow": false },
-  { "title": "📘課程講義/簡報教材上傳／下載", "desc": "上傳或下載教學文件",    "link": "materials.html",              "newWindow": false },
-  { "title": "✅幹部待辦事項",         "desc": "查看幹部專屬待辦事項",     "link": "tasks.html",                  "newWindow": false },
-  { "title": "🗒️幹部討論資料",         "desc": "討論事項、草案、會議記錄...",         "link": "https://drive.google.com/drive/folders/1RXIkRybDu4Np2BgiBjtKsQFynzlI6EKo?usp=sharing",                           "newWindow": false }
+  { "title": "📅 上課日程表",           "desc": "　　查看課程時間與地點",       "link": "https://calendar.google.com/calendar/embed?src=3a1e71da8275d37c7182b1fa8df8efd79f3992bb9b46ac12821455e25f00abaa%40group.calendar.google.com&ctz=Asia%2FTaipei",               "newWindow": false },
+  { "title": "🧾 班級資料維護",         "desc": "　　管理班級成員與資訊",       "link": "https://docs.google.com/spreadsheets/d/1aMfQ3zpojQIcN--Ke1LF61i2NlVLnHqo/edit?usp=sharing&ouid=105121837541059162278&rtpof=true&sd=true",             "newWindow": false },
+  { "title": "🍽️ 午餐/下午茶",             "desc": "　　快速線上訂餐",           "link": "https://docs.google.com/…",   "newWindow": true  },
+  { "title": "📝 活動報名與管理",       "desc": "　　報名班級活動並查看狀態",   "link": "events.html",                 "newWindow": false },
+  { "title": "💰 班費收支一覽",         "desc": "　　查看班費收支記錄",         "link": "https://docs.google.com/spreadsheets/d/1VKDNaEqzPcsLwoSsx8Gh_T7kgzn8M8lSWvvN6qetlag/edit?usp=sharing",                "newWindow": false },
+  { "title": "🧑‍🏫 校內講座",             "desc": "　　瀏覽校內講座資訊",         "link": "#",                           "newWindow": false },
+  { "title": "🗣️ 班級事項宣導",         "desc": "　　重要宣導事項",             "link": "announcements.html",          "newWindow": false },
+  { "title": "📘 課程講義/簡報教材", "desc": "　　班級/小組課程教材/講義",    "link": "https://drive.google.com/drive/folders/1UIE6jKdu1GD8yCEICJci8KArLHyMbfpM?usp=sharing",              "newWindow": false },
+  { "title": "✅ 幹部待辦事項",         "desc": "　　查看幹部專屬待辦事項",     "link": "https://docs.google.com/spreadsheets/d/1KXgnJJ4ko0WPSwmNDmX0-EtGNumCw8WfRmqIJ2OpCyo/edit?usp=sharing",                  "newWindow": false },
+  { "title": "🗒️ 幹部討論資料",         "desc": "　　討論事項、草案、會議記錄...",         "link": "https://drive.google.com/drive/folders/1RXIkRybDu4Np2BgiBjtKsQFynzlI6EKo?usp=sharing",                           "newWindow": false }
 ]

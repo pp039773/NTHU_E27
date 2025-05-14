@@ -27,6 +27,15 @@
     .announcement-item:hover {
       background-color: rgba(109, 41, 124, 0.1);
     }
+    .indent-dinbendo {
+  padding-left: 42pt;font-size: 0.85em;color:gray;
+}
+
+    .indent-desc {
+  padding-left: 28pt;
+}
+
+
   </style>
 </head>
 <body>
@@ -37,13 +46,13 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="切換導覽">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav"></div>
+      <div class="collapse navbar-collapse"  id="navbarNav"></div>
     </div>
   </nav>
 
   <!-- 主要內容 -->
-  <div class="container py-4">
-    <div class="row g-3" id="feature-list"></div>
+  <div class="container py-4" >
+    <div class="row g-3"  id="feature-list"></div>
   </div>
 
   <!-- Bootstrap Bundle JS -->
@@ -73,7 +82,7 @@
           const card = document.createElement('div'); card.className = 'card feature-card h-100 shadow-sm';
           const body = document.createElement('div'); body.className = 'card-body';
           const h5 = document.createElement('h5'); h5.className = 'card-title'; h5.textContent = title;
-          const p = document.createElement('p'); p.className = 'card-text text-muted'; p.textContent = desc;
+          const p = document.createElement('p'); p.className = 'card-text text-muted';  p.textContent = desc;
           body.append(h5, p); card.appendChild(body); a.appendChild(card); col.appendChild(a);
         }
         container.appendChild(col);
@@ -82,7 +91,7 @@
         .then(r => r.json())
         .then(menus => {
           // 最新公告
-          createCard({ title: '📢最新公告', onLoad: el => {
+          createCard({ title: '📢 最新公告', onLoad: el => {
             el.textContent = '載入中…';
             fetch('data/announcements.json')
               .then(r => r.json())
@@ -93,39 +102,37 @@
               });
           }});
           menus.forEach(item => {
-            if (item.title === '📅上課日程表') {
+            if (item.title === '📅 上課日程表') {
               createCard({ title: item.title, onLoad: el => {
                 el.innerHTML = `
-                  <div class="mb-2"><a href="https://calendar.google.com/calendar/u/0?cid=M2ExZTcxZGE4Mjc1ZDM3YzcxODJiMWZhOGRmOGVmZDc5ZjM5OTJiYjliNDZhYzEyODIxNDU1ZTI1ZjAwYWJhYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" onclick="event.stopPropagation()">E27專用Google Calendar</a></div>
-                  <div class="mb-2"><a href="#" onclick="event.stopPropagation(); alert('教材準備中，請稍後...')">如何匯入我的Google Calendar</a></div>
-                  <div class="mb-2"><a href="#" onclick="event.stopPropagation(); alert('教材準備中，請稍後...')">如何匯入我的Outlook</a></div>
+                  <div class="mb-2 indent-desc">❖ <a href="https://calendar.google.com/calendar/u/0?cid=M2ExZTcxZGE4Mjc1ZDM3YzcxODJiMWZhOGRmOGVmZDc5ZjM5OTJiYjliNDZhYzEyODIxNDU1ZTI1ZjAwYWJhYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" onclick="event.stopPropagation()">E27上課日程行事曆</a></div>
+                  <div class="mb-2 indent-desc">❖ <a href="#" onclick="event.stopPropagation(); alert('教材準備中，請稍後...')">如何匯入我的Google Calendar</a></div>
+                  <div class="mb-2 indent-desc">❖ <a href="#" onclick="event.stopPropagation(); alert('教材準備中，請稍後...')">如何匯入我的Outlook</a></div>
                 `;
               }});
-            } else if (item.title === '🧑‍🏫校內講座') {
+            } else if (item.title === '🍽️ 午餐/下午茶') {
+              createCard({ title: item.title, onLoad: el => {
+                el.innerHTML = `
+                  <div class="mb-2 indent-desc">❖ <a href="https://dinbendon.net/do" target="_blank" onclick="event.stopPropagation()">訂便當系統</a></div>
+                  <div class="mb-2 indent-dinbendo"> 群組帳號:E27 / 群組密碼: EMBA27 </div>
+                  <div class="mb-2 indent-desc">❖ <a href="https://docs.google.com/presentation/d/1ozn-m8ZRxxGTIbvx-V1476TG-kdWhwSm/edit?usp=sharing&ouid=105121837541059162278&rtpof=true&sd=true">如何使用 </a></div>
+                `;
+              }});
+            } else if (item.title === '🧑‍🏫 校內講座') {
               createCard({ title: item.title, desc: item.desc, onLoad: el => {
                 // 改為 alert 規畫中
                 el.innerHTML = `<p class="text-center text-muted">規畫中，請稍後...</p>`;
 
               }});
-            } else if (item.title === '💰班費收支一覽') {
+            }  else if (item.title === '🍽️ 午餐/下午茶') {
               createCard({ title: item.title, desc: item.desc, onLoad: el => {
                 // 改為 alert 規畫中
                 el.innerHTML = `<p class="text-center text-muted">規畫中，請稍後...</p>`;
 
               }});
-            } else if (item.title === '🍽️午餐/下午茶') {
-              createCard({ title: item.title, desc: item.desc, onLoad: el => {
-                // 改為 alert 規畫中
-                el.innerHTML = `<p class="text-center text-muted">規畫中，請稍後...</p>`;
-
-              }});
-            } else if (item.title === '🧾班級資料維護') {
-              createCard({ title: item.title, desc: item.desc, onLoad: el => {
-                // 改為 alert 規畫中
-                el.innerHTML = `<p class="text-center text-muted">規畫中，請稍後...</p>`;
-
-              }});
-            } else if (item.title === '🗒️幹部討論資料') {
+            }  
+            /*
+            else if (item.title === '🗒️ 幹部討論資料') {
               createCard({ title: item.title, desc: item.desc, onLoad: el => {
                 el.textContent = '載入中…';
                 fetch('data/meetingminutes.json')
@@ -136,7 +143,9 @@
                     ).join('');
                   });
               }});
-            } else {
+            } 
+            */
+            else {
               createCard({ title: item.title, desc: item.desc, link: item.link, newWindow: item.newWindow });
             }
           });
