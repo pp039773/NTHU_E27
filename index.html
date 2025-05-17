@@ -110,7 +110,7 @@
                   <div class="mb-2 indent-desc">❖ <a href="#" onclick="event.stopPropagation(); alert('教材準備中，請稍後...')">如何匯入我的Outlook</a></div>
                 `;
               }});
-            } else if (item.title === '🍽️ 午餐/下午茶') {
+            } else if (item.title === '🍽️ 午餐/下午茶訂購') {
               createCard({ title: item.title, onLoad: el => {
                 el.innerHTML = `
                   <div class="mb-2 indent-desc">❖ <a href="https://dinbendon.net/do" target="_blank" onclick="event.stopPropagation()">訂便當系統</a></div>
@@ -124,25 +124,32 @@
                 el.innerHTML = `<p class="text-center text-muted">規畫中，請稍後...</p>`;
 
               }});
-            }  else if (item.title === '🗣️ 班級事項宣導') {
+            }  
+            /*
+            else if (item.title === '🗣️ 班級事項宣導') {
               createCard({ title: item.title, desc: item.desc, onLoad: el => {
                 // 改為 alert 規畫中
                 el.innerHTML = `<p class="text-center text-muted">規畫中，請稍後...</p>`;
 
               }});
-            } else if (item.title === '📝 活動報名與管理') {
+            } 
+            */
+            else if (item.title === '📝 活動報名與管理') {
               createCard({ title: item.title, desc: item.desc, onLoad: el => {
                 // 改為 alert 規畫中
                 el.innerHTML = `<p class="text-center text-muted">規畫中，請稍後...</p>`;
 
               }});
-            } else if (item.title === '🍽️ 午餐/下午茶') {
+            } 
+            /*
+            else if (item.title === '🍽️ 午餐/下午茶') {
               createCard({ title: item.title, desc: item.desc, onLoad: el => {
                 // 改為 alert 規畫中
                 el.innerHTML = `<p class="text-center text-muted">規畫中，請稍後...</p>`;
 
               }});
             }  
+              */
             /*
             else if (item.title === '🗒️ 幹部討論資料') {
               createCard({ title: item.title, desc: item.desc, onLoad: el => {
