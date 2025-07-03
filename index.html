@@ -39,6 +39,7 @@
   </style>
 </head>
 <body>
+
   <!-- 導覽列 -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
@@ -49,7 +50,7 @@
       <div class="collapse navbar-collapse"  id="navbarNav"></div>
     </div>
   </nav>
-
+ <!--div style="text-align:center;padding-top:12px;" >請使用 <strong style="color:blue;">nthue27.user1@gmail.com / ctm@user1</strong> 存取應用程式</div -->
   <!-- 主要內容 -->
   <div class="container py-4" >
     <div class="row g-3"  id="feature-list"></div>
@@ -102,10 +103,21 @@
               });
           }});
           menus.forEach(item => {
-            if (item.title === '📅 上課日程表') {
+          
+            if (item.title === '🌐 常用連結') {
               createCard({ title: item.title, onLoad: el => {
                 el.innerHTML = `
-                  <div class="mb-2 indent-desc">❖ <a href="https://calendar.google.com/calendar/u/0?cid=M2ExZTcxZGE4Mjc1ZDM3YzcxODJiMWZhOGRmOGVmZDc5ZjM5OTJiYjliNDZhYzEyODIxNDU1ZTI1ZjAwYWJhYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" onclick="event.stopPropagation()">E27上課日程行事曆</a></div>
+                  <div class="mb-2 indent-desc">❖ <a target="_blank"  href="https://www.ccxp.nthu.edu.tw/ccxp/INQUIRE/" onclick="event.stopPropagation()">NTHU校務系統</a></div>
+                  <div class="mb-2 indent-desc">❖ <a target="_blank"  href="https://eeclass.nthu.edu.tw/dashboard" onclick="event.stopPropagation()">eeclass數位學習平台</a></div>
+                  <div class="mb-2 indent-desc">❖ <a target="_blank"  href="https://curricul.site.nthu.edu.tw/?Lang=zh-tw" onclick="event.stopPropagation()">課務系統</a></div>
+                  <div class="mb-2 indent-desc">❖ <a target="_blank"  href="#" onclick="event.stopPropagation()">保留1</a></div>
+                  <div class="mb-2 indent-desc">❖ <a target="_blank"  href="#" onclick="event.stopPropagation()">保留2</a></div>
+                `;
+              }});
+            } else if (item.title === '📅 上課日程表') {
+              createCard({ title: item.title, onLoad: el => {
+                el.innerHTML = `
+                  <div class="mb-2 indent-desc">❖ <a href="https://timetreeapp.com/calendars" target="_blank" onclick="event.stopPropagation()">E27上課日程行事曆</a></div>
                   <div class="mb-2 indent-desc">❖ <a href="#" onclick="event.stopPropagation(); alert('教材準備中，請稍後...')">如何匯入我的Google Calendar</a></div>
                   <div class="mb-2 indent-desc">❖ <a href="#" onclick="event.stopPropagation(); alert('教材準備中，請稍後...')">如何匯入我的Outlook</a></div>
                 `;
@@ -168,6 +180,65 @@
               createCard({ title: item.title, desc: item.desc, link: item.link, newWindow: item.newWindow });
             }
           });
+        });
+    });
+  </script>
+
+
+
+
+  <!--div class="modal fade" id="noticeModal" tabindex="-1" aria-labelledby="noticeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="noticeModalLabel">系統提醒</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ⚠️ 因Google個人版授權原因，若開啟的畫面需要輸入google 帳號/密碼時請使用:<br>
+          　組員請使用<strong style="color:blue;"> nthue27.user1@gmail.com / ctm@user1</strong><br>
+          　幹部請使用<strong style="color:blue;"> nthuemba.e27@gmail.com </strong><br><br>
+          ⚠️ 請<strong style="color:red"> 不要使用</strong> 個人的google 帳號存取應用系統，5/21起，個人gmail 將無法存取班務系統中的應用程式...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+          <button type="button" class="btn btn-primary" id="dontShowBtn">不要再顯示</button>
+        </div>
+      </div>
+    </div>
+  </div -->
+
+  <!-- Bootstrap Bundle JS (已包含 Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- 2. 修改你的主程式區塊，加入顯示和儲存邏輯 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // --- 先判斷 localStorage 是否有關閉標記 ---
+      const hidden = localStorage.getItem('hideNoticeModal');
+      if (!hidden) {
+        const noticeModalEl = document.getElementById('noticeModal');
+        const noticeModal = new bootstrap.Modal(noticeModalEl);
+        // 顯示 Modal
+        noticeModal.show();
+
+        // 綁定「不要再顯示」按鈕事件
+        document.getElementById('dontShowBtn').addEventListener('click', () => {
+          // 記錄到 localStorage，永不再顯示
+          localStorage.setItem('hideNoticeModal', 'true');
+          noticeModal.hide();
+        });
+      }
+
+      // --- 你原本的 feature-list 邏輯照舊 ---
+      const container = document.getElementById('feature-list');
+      function createCard({ title, desc, link, newWindow, onLoad }) {
+        /* … */
+      }
+      fetch('data/menulist.json')
+        .then(r => r.json())
+        .then(menus => {
+          /* … */
         });
     });
   </script>
